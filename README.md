@@ -1,5 +1,6 @@
 # Music_Library-DBMS
-## A  mySQL database designed to store detailed information about artists, albums, songs, concerts and labels
+A  mySQL database designed to store detailed information about artists, albums, songs, concerts and labels
+
 ## An additional API si desgined to interact wuth the Database
 ## The application will consider the following functionality:
 •CRUD for Concerts and Playlists
