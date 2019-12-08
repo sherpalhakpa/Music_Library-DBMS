@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Customers</title>
+  <title>Employees</title>
   <link rel='stylesheet' href='/stylesheets/style.css' />
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
@@ -10,8 +10,8 @@
 <body>
   <div>
     <a href="/" class="btn btn-primary ml-3">Home</a>
-    <a href="/customers/add" class="btn btn-secondary ml-3">New Customer</a>
-    <a href="/customers" class="btn btn-info ml-3">Customer List</a>
+    <a href="/employees/add" class="btn btn-secondary ml-3">New Customer</a>
+    <a href="/employees" class="btn btn-info ml-3">Customer List</a>
 </div>
 <!--   <% if (messages.error) { %>
   <p style="color:red"><%- messages.error %></p>
@@ -40,8 +40,8 @@
     <td><%= data[i].name%></td>
     <td><%= data[i].email%></td>
     <td>
-    <a class="btn btn-success edit" href="../customers/edit/<%=data[i].id%>">Edit</a>
-    <a class="btn btn-danger delete" onclick="return alert('Are You sure?')" href="../customers/delete/<%=data[i].id%>">Delete</a>
+    <a class="btn btn-success edit" href="../employees/edit/<%=data[i].id%>">Edit</a>
+    <a class="btn btn-danger delete" onclick="return alert('Are You sure?')" href="../employees/delete/<%=data[i].id%>">Delete</a>
    </td>
   </tr>
   <% }
