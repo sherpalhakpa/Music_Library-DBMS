@@ -1,5 +1,6 @@
 create schema music_db collate utf8mb4_0900_ai_ci;
 
+
 create table Album
 (
 	albumId int auto_increment
@@ -24,19 +25,16 @@ create table Band
 	bandName varchar(50) not null
 );
 
-create table ArtistXAlbumXBand
+create table ArtistXAlbum
 (
-	artistXAlbumXBand int auto_increment
+	artistXAlbum int auto_increment
 		primary key,
 	albumId int not null,
 	artistId int not null,
-	bandId int not null,
-	constraint ArtistXAlbumXBand_Album_albumId_fk
+	constraint ArtistXAlbum_Album_albumId_fk
 		foreign key (albumId) references Album (albumId),
-	constraint ArtistXAlbumXBand_Artist_artistId_fk
-		foreign key (artistId) references Artist (artistId),
-	constraint ArtistXAlbumXBand_Band_bandId_fk
-		foreign key (bandId) references Band (bandId)
+	constraint ArtistXAlbum_Artist_artistId_fk
+		foreign key (artistId) references Artist (artistId)
 );
 
 create table ArtistXBand
@@ -51,6 +49,18 @@ create table ArtistXBand
 		foreign key (artistId) references Artist (artistId),
 	constraint ArtistXBand_Band_bandId_fk
 		foreign key (bandId) references Band (bandId)
+);
+
+create table BandXAlbum
+(
+    BandXAlbumId int auto_increment
+        primary key,
+    albumId int not null,
+    bandId int not null,
+    constraint BandxAlbum_album_fk
+        foreign key (albumId) references Album (albumId),
+    constraint band_fk
+        foreign key (bandId) references Band (bandId)
 );
 
 create table Genre
