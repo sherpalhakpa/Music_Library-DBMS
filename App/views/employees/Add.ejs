@@ -17,13 +17,30 @@
 <% } %>
 <form action="/employees/add" method="post" name="form1">
 <div class="form-group">
-  <label for="exampleInputPassword1">Name</label>
-  <input type="text" class="form-control" name="name" id="name" value="" placeholder="Name">
+  <label for="exampleInputPassword1">emp_no</label>
+  <input type="number" class="form-control" name="emp_no" id="emp_no" value="" placeholder="emp_no">
 </div>
 <div class="form-group">
-  <label for="exampleInputEmail1">Email address</label>
-  <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" value="">
+  <label for="exampleInputEmail1">first_name</label>
+  <input type="text" class="form-control" name="first_name" id="first_name" value="" placeholder="first_name" >
 </div>
+<div class="form-group">
+  <label for="exampleInputEmail1">last_name</label>
+  <input type="text" class="form-control" name="last_name" id="first_name" value="" placeholder="first_name" >
+</div>
+<div class="form-group">
+  <label for="exampleInputEmail1">gender</label>
+  <input type="text" class="form-control" name="gender" id="first_name" value="" placeholder="gender" >
+</div>
+<div class="form-group">
+  <label for="exampleInputEmail1">birth_date</label>
+  <input type="date" class="form-control" name="birth_date" id="birth_date" value="" placeholder="birth_date" >
+</div>
+<div class="form-group">
+  <label for="exampleInputEmail1">hire_date</label>
+  <input type="date" class="form-control" name="hire_date" id="hire_date" value="" placeholder="hire_date" >
+</div>
+
 
 <input type="submit" class="btn btn-primary" value="Add">
 </form>
