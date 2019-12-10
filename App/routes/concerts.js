@@ -6,7 +6,7 @@ var connection  = require('../lib/db');
 /* GET home page. */
 router.get('/', function(req, res, next) {
 
- connection.query('SELECT mainPerformer, venueLocation, FROM Concert C JOIN Venue V ON C.concertId = V.concertId',function(err,rows)     {
+ connection.query('SELECT concertName, concertLocation FROM Concert',function(err,rows)     {
 
         if(err){
          req.flash('error', err);

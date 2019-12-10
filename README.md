@@ -9,9 +9,3 @@
 ### •Allow drill down from the Album, to see its songs
 ### •Search for songs and for artists
 ### •Search for Playlists, show the duration of a playlist
-
-Instruction
-----------------------------------------------------------------------
-###For MySql Songs Database:
-- Go to your MySql Shell in terminal.
-- You can also use IDEs like Mysql WorkBench or 
