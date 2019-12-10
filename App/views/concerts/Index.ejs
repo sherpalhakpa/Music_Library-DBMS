@@ -10,8 +10,8 @@
 <body>
   <div>
     <a href="/" class="btn btn-primary ml-3">Home</a>
-    <a href="/employees/add" class="btn btn-secondary ml-3">New Concert</a>
-    <a href="/employees" class="btn btn-info ml-3">Concert List</a>
+    <a href="/concerts/add" class="btn btn-secondary ml-3">New Concert</a>
+    <a href="/concerts" class="btn btn-info ml-3">Concert List</a>
 </div>
 <!--   <% if (messages.error) { %>
   <p style="color:red"><%- messages.error %></p>
@@ -36,11 +36,11 @@
 
   for(var i = 0; i< data.length; i++) {%>
   <tr>
-    <th scope="row"><%= (i+1) %></th>
-    <td><%= data[i].mainPerformer%></td>
-    <td><%= data[i].first_name %></td>
+    <td><%= data[i].concertId%></td>
+    <td><%= data[i].concertName%></td>
+    <td><%= data[i].concertLocation %></td>
     <td>
-    <a class="btn btn-success edit" href="../concerts/edit/<%=data[i].emp_no%>">Edit</a>
+    <a class="btn btn-success edit" href="../concerts/edit/<%=data[i].conertId%>">Edit</a>
     <a class="btn btn-danger delete" onclick="return alert('Are You sure?')" href="../concerts/delete/<%=data[i].concertId%>">Delete</a>
    </td>
   </tr>

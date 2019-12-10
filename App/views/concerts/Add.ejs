@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Employees</title>
+  <title>Concerts</title>
   <link rel='stylesheet' href='/stylesheets/style.css' />
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
@@ -15,14 +15,22 @@
 <% if (messages.success) { %>
     <p style="color:green"><%- messages.success %></p>
 <% } %>
-<form action="/employees/add" method="post" name="form1">
+<form action="/concerts/add" method="post" name="form1">
 <div class="form-group">
-  <label for="exampleInputPassword1">Name</label>
-  <input type="text" class="form-control" name="name" id="name" value="" placeholder="Name">
+  <label for="exampleInputPassword1">ID</label>
+  <input type="number" class="form-control" name="concertID" id="concertId" value="" placeholder="concertID">
 </div>
 <div class="form-group">
-  <label for="exampleInputEmail1">Email address</label>
-  <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" value="">
+  <label for="exampleInputEmail1">Concert Name</label>
+  <input type="text" name="text" class="form-control" id="concertName" placeholder="concertName" value="">
+</div>
+<div class="form-group">
+  <label for="exampleInputEmail1">Location</label>
+  <input type="text" name="concertLocation" class="form-control" id="concertLocation" placeholder="concertLocation" value="">
+</div>
+<div class="form-group">
+  <label for="exampleInputEmail1">Year</label>
+  <input type="number" name="concertYear" class="form-control" id="concertYear" placeholder="Year" value="">
 </div>
 
 <input type="submit" class="btn btn-primary" value="Add">

@@ -42,8 +42,8 @@ app.use(expressValidator());
 
 app.use('/', indexRouter);
 app.use('/employees', employeesRouter);
-app.use('/concerts', employeesRouter);
-app.use('/playlists', employeesRouter);
+app.use('/concerts', concertsRouter);
+app.use('/playlists', playlistsRouter);
 app.use('/songs', songsRouter);
 
 // catch 404 and forward to error handler
