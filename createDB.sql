@@ -4,8 +4,8 @@ create table Album
 (
 	albumId int auto_increment
 		primary key,
-	albumName varchar(20) not null,
-	albumDescription text null,
+	albumName varchar(50) not null,
+	albumDescription varchar(6000) null,
 	albumImage varbinary(6000) null
 );
 
@@ -14,14 +14,14 @@ create table Artist
 	artistId int auto_increment
 		primary key,
 	artistName varchar(50) not null,
-	artistDescription text null
+	artistDescription varchar(6000) null
 );
 
 create table Band
 (
 	bandId int auto_increment
 		primary key,
-	bandName varchar(20) not null
+	bandName varchar(50) not null
 );
 
 create table ArtistXAlbumXBand
@@ -58,7 +58,7 @@ create table Genre
 	genreId int auto_increment
 		primary key,
 	genreName varchar(50) not null,
-	genreDescription text null
+	genreDescription varchar(6000) null
 );
 
 create table Label
@@ -73,7 +73,7 @@ create table Playlist
 	playlistId int auto_increment
 		primary key,
 	playlistName varchar(50) not null,
-	playlistDescription text null
+	playlistDescription varchar(6000) null
 );
 
 create table Song
@@ -83,7 +83,7 @@ create table Song
 	songTitle varchar(50) not null,
 	songDuration time not null,
 	songLyrics text null,
-	albumId int not null,
+	albumId int null,
 	artistId int not null,
 	genreId int not null,
 	constraint Song_Album_albumId_fk
@@ -100,9 +100,9 @@ create table `Order`
 		primary key,
 	playlistId int not null,
 	songId int not null,
-	constraint Order___fk1
+	constraint Playlist_Order_fk
 		foreign key (playlistId) references Playlist (playlistId),
-	constraint Order___fk2
+	constraint Song_Order_fk
 		foreign key (songId) references Song (songId)
 );
 
@@ -111,14 +111,14 @@ create table Venue
 	venueId int auto_increment
 		primary key,
 	location varchar(30) not null,
-	description text not null
+	description varchar(6000) null
 );
 
 create table Concert
 (
 	concertId int auto_increment
 		primary key,
-	concertDate date null,
+	concertYear int null,
 	openerPerformer tinyint(1) null,
 	mainPerformer tinyint(1) null,
 	venueId int not null,
@@ -134,7 +134,7 @@ create table ConcertXSongs
 	songId int not null,
 	constraint ConcertXSongs_Concert_concertId_fk
 		foreign key (concertId) references Concert (concertId),
-	constraint ConcertXSongs___fk2
+	constraint ConcertXSongs_Songs_fk2
 		foreign key (songId) references Song (songId)
 );
 
@@ -150,7 +150,7 @@ create table Recorded
 		foreign key (labelId) references Label (labelId)
 );
 
-create table concertXArtist
+create table ConcertXArtist
 (
 	concertXArtistId int auto_increment
 		primary key,
@@ -161,4 +161,3 @@ create table concertXArtist
 	constraint concertXArtist_Concert_concertId_fk
 		foreign key (concertId) references Concert (concertId)
 );
-
