@@ -19,7 +19,7 @@ Instruction
 - You can also use IDEs like Mysql WorkBench or DataGrip
 - Go to MySql console and Run the following commands:
   - mysql> source createDB.sql 
-  - mysql> source populateDB.sql
+  - mysql> source populationDB.sql
   
 ### For CRUD API
 - Go to project folder in your choice of command line interface
