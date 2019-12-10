@@ -12,10 +12,10 @@ var mysql = require('mysql');
 var connection  = require('./lib/db');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 var employeesRouter = require('./routes/employees');
 var concertsRouter = require('./routes/concerts');
 var playlistsRouter = require('./routes/playlists');
+var songsRouter = require('./routes/songs');
 
 
 var app = express();
@@ -41,10 +41,10 @@ app.use(flash());
 app.use(expressValidator());
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use('/employees', employeesRouter);
 app.use('/concerts', employeesRouter);
 app.use('/playlists', employeesRouter);
+app.use('/songs', songsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

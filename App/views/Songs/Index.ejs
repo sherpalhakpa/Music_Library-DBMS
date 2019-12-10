@@ -37,11 +37,11 @@
   for(var i = 0; i< data.length; i++) {%>
   <tr>
     <th scope="row"><%= (i+1) %></th>
-    <td><%= data[i].mainPerformer%></td>
+    <td><%= data[i].emp_no%></td>
     <td><%= data[i].first_name %></td>
     <td>
     <a class="btn btn-success edit" href="../concerts/edit/<%=data[i].emp_no%>">Edit</a>
-    <a class="btn btn-danger delete" onclick="return alert('Are You sure?')" href="../concerts/delete/<%=data[i].concertId%>">Delete</a>
+    <a class="btn btn-danger delete" onclick="return alert('Are You sure?')" href="../concerts/delete/<%=data[i].emp_no%>">Delete</a>
    </td>
   </tr>
   <% }

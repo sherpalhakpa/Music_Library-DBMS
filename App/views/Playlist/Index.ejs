@@ -12,6 +12,19 @@
     <a href="/" class="btn btn-primary ml-3">Home</a>
     <a href="/employees/add" class="btn btn-secondary ml-3">New Employee</a>
     <a href="/employees" class="btn btn-info ml-3">Employee List</a>
+    <form action="/employees/getbyId/<%= id %>" method="post" name="form1">
+    <div class="form-group">
+      <label for="exampleInputPassword1">Name</label>
+      <input type="text" class="form-control" name="name" id="name" value="<%= name %>" placeholder="Name">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Email address</label>
+      <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="Enter email" value="<%= email %>">
+
+    </div>
+
+    <button type="submit" class="btn btn-info">Update</button>
+    </form>
   </div>
   <!--   <% if (messages.error) { %>
   <p style="color:red"><%- messages.error %></p>

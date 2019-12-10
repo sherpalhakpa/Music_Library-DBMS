@@ -6,13 +6,13 @@ var connection  = require('../lib/db');
 /* GET home page. */
 router.get('/', function(req, res, next) {
 
- connection.query('SELECT playlistName FROM playlist',function(err,rows)     {
+ connection.query('SELECT mainPerformer, venueLocation, FROM Concert C JOIN Venue V ON C.concertId = V.concertId',function(err,rows)     {
 
         if(err){
          req.flash('error', err);
-         res.render('playlist',{page_title:"playlist",data:''});
+         res.render('concert',{page_title:"concert",data:''});
         }else{
-              res.render('employees',{page_title:"playlist",data:rows});
+              res.render('concert',{page_title:"concert",data:rows});
         }
          });
 
@@ -21,7 +21,7 @@ router.get('/', function(req, res, next) {
 // SHOW ADD PLAYLIST FORM
 router.get('/add', function(req, res, next){
     // render to views/user/add.ejs
-    res.render('employees/add', {
+    res.render('concerts/add', {
         title: 'Add New Concert',
         name: '',
         email: ''
