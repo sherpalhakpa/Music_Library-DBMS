@@ -6,7 +6,7 @@ var connection  = require('../lib/db');
 /* GET home page. */
 router.get('/', function(req, res, next) {
 
- connection.query('SELECT concertID, concertName, concertLocation FROM Concert',function(err,rows)     {
+ connection.query('SELECT * FROM Concert',function(err,rows)     {
 
         if(err){
          req.flash('error', err);
@@ -23,8 +23,10 @@ router.get('/add', function(req, res, next){
     // render to views/user/add.ejs
     res.render('concerts/add', {
         title: 'Add New Concert',
-        name: '',
-        email: ''
+        concertId: '',
+        concertName: '',
+        concertLocation: '',
+        concertYear: ''
     })
 })
 
@@ -41,7 +43,7 @@ router.post('/add', function(req, res, next){
        // redirect to users list page
        res.redirect('/concerts')
    } else {
-       req.flash('success', 'Concert added successfully! emp_no = ' + req.params.emp_no)
+       req.flash('success', 'Concert added successfully! = ' + req.params.concertId)
        // redirect to users list page
        res.redirect('/concerts')
    }
@@ -50,24 +52,25 @@ router.post('/add', function(req, res, next){
 })
 
 // SHOW EDIT USER FORM
-router.get('/edit/(:id)', function(req, res, next){
-
-connection.query('SELECT * FROM Concert WHERE id = ' + req.params.id, function(err, rows, fields) {
-            if(err) throw err
+router.get('/edit/(:concertId)', function(req, res, next){
+var params  = req.body;
+connection.query('SELECT * FROM Concert WHERE concertId = ' + req.params.concertId, function(err, rows, fields) {
+            if(err) throw err;
 
             // if user not found
             if (rows.length <= 0) {
-                req.flash('error', 'Concert not found with id = ' + req.params.id)
+                req.flash('error', 'Concert not found with id = ' + req.params.concertId)
                 res.redirect('/concerts')
             }
             else { // if user found
                 // render to views/user/edit.ejs template file
-                res.render('Concert/edit', {
-                    title: 'Edit Customer',
+                res.render('concerts/Edit', {
+                    title: 'Edit Concert',
                     //data: rows[0],
-                    id: rows[0].id,
-                    name: rows[0].name,
-                    email: rows[0].email
+                    concertId: rows[0].concertId,
+                    concertName: rows[0].concertName,
+                    concertLocation: rows[0].concertLocation,
+                    concertYear:rows[0].concertYear
                 })
             }
         })
@@ -75,31 +78,34 @@ connection.query('SELECT * FROM Concert WHERE id = ' + req.params.id, function(e
 })
 
 // EDIT USER POST ACTION
-router.post('/update/:id', function(req, res, next) {
-    req.assert('name', 'Name is required').notEmpty()           //Validate nam           //Validate age
-    req.assert('email', 'A valid email is required').isEmail()  //Validate email
-
+router.post('/update/:concertId', function(req, res, next) {
+  var params  = req.body;
+    //req.assert('concertName', 'Name is required').notEmpty()
+    //req.assert('concertLocation', 'Location is required').notEmpty()          //Validate nam           //Validate age
+    console.log(params);
     var errors = req.validationErrors()
 
     if( !errors ) {
 
         var user = {
-            name: req.sanitize('name').escape().trim(),
-            email: req.sanitize('email').escape().trim()
+          concertId: req.params.concertId,
+          concertName: req.params.concertName,
+          concertLocation: req.params.concertLocation,
+          concertYear: req.params.concertYear
         }
 
-connection.query('UPDATE Concert SET ? WHERE id = ' + req.params.id, user, function(err, result) {
+connection.query('UPDATE Concert SET ? WHERE concertId = ' + req.params.concertId, params, function(err, result) {
                 //if(err) throw err
                 if (err) {
                     req.flash('error', err)
 
                     // render to views/user/add.ejs
-                    res.render('Concert/edit', {
-                        title: 'Edit Customer',
-                        id: req.params.id,
-                        name: req.body.name,
-                        email: req.body.email
-                    })
+                    //res.render('Concert/edit', {
+                      //concertId: req.params.concertId,
+                      //concertName: req.params.concertName,
+                      //concertLocation: req.params.concertLocation,
+                      //concertYear: req.params.concertYear
+                  //  })
                 } else {
                     req.flash('success', 'Data updated successfully!');
                     res.redirect('/concerts');
@@ -118,27 +124,28 @@ connection.query('UPDATE Concert SET ? WHERE id = ' + req.params.id, user, funct
          * Using req.body.name
          * because req.param('name') is deprecated
          */
-        res.render('concerts/edit', {
-            title: 'Edit Customer',
-            id: req.params.id,
-            name: req.body.name,
-            email: req.body.email
-        })
+    //    res.render('concerts/edit', {
+      //      title: 'Edit Concert',
+        //    concertId: req.params.concertId,
+          //  concertName: req.params.concertName,
+            //concertLocation: req.params.concertLocation,
+            //concertYear: req.params.concertYear
+      //  })
     }
 })
 
 // DELETE USER
-router.get('/delete/(:id)', function(req, res, next) {
-    var user = { id: req.params.id }
-
-connection.query('DELETE FROM Concert WHERE id = ' + req.params.id, user, function(err, result) {
+router.get('/delete/(:concertId)', function(req, res, next) {
+    var params  = req.body;
+    var user = { concertId: req.params.concertId };
+connection.query('DELETE FROM Concert WHERE concertId = ' + req.params.concertId, user, function(err, result) {
             //if(err) throw err
             if (err) {
                 req.flash('error', err)
                 // redirect to users list page
                 res.redirect('/Concert')
             } else {
-                req.flash('success', 'Concert deleted successfully! id = ' + req.params.id)
+                req.flash('success', 'Concert deleted successfully! id = ' + req.params.concertId)
                 // redirect to users list page
                 res.redirect('/concerts')
             }

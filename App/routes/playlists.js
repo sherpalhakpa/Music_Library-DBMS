@@ -6,11 +6,11 @@ var connection  = require('../lib/db');
 /* GET home page. */
 router.get('/', function(req, res, next) {
 
- connection.query('SELECT e.emp_no, e.first_name FROM employees e ORDER BY emp_no desc',function(err,rows)     {
+ connection.query('SELECT playlistID, playlistName FROM Playlist',function(err,rows)     {
 
         if(err){
          req.flash('error', err);
-         res.render('employees',{page_title:"Employees - Node.js",data:''});
+         res.render('playlist',{page_title:"Employees - Node.js",data:''});
         }else{
               res.render('employees',{page_title:"Employees - Node.js",data:rows});
         }

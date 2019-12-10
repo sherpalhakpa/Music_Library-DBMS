@@ -12,7 +12,7 @@ var mysql = require('mysql');
 var connection  = require('./lib/db');
 
 var indexRouter = require('./routes/index');
-var employeesRouter = require('./routes/employees');
+var artistsRouter = require('./routes/artists');
 var concertsRouter = require('./routes/concerts');
 var playlistsRouter = require('./routes/playlists');
 var songsRouter = require('./routes/songs');
@@ -41,7 +41,7 @@ app.use(flash());
 app.use(expressValidator());
 
 app.use('/', indexRouter);
-app.use('/employees', employeesRouter);
+app.use('/artists', artistsRouter);
 app.use('/concerts', concertsRouter);
 app.use('/playlists', playlistsRouter);
 app.use('/songs', songsRouter);

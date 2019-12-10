@@ -8,18 +8,29 @@
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 <body>
-<form action="/employees/update/<%= id %>" method="post" name="form1">
-<div class="form-group">
-  <label for="exampleInputPassword1">Name</label>
-  <input type="number" class="form-control" name="emp_no" id="emp_no" value="" placeholder="emp_no">
-</div>
-<div class="form-group">
-  <label for="exampleInputEmail1">Email address</label>
-  <input type="text" class="form-control" name="first_name" id="first_name" placeholder="Enter first_name" value="">
+  <table class="table">
+  <thead>
+  <tr>
+    <th scope="col">Song Title</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% if(data.length){
 
-</div>
+  for(var i = 0; i< data.length; i++) {%>
+  <tr>
+  <!--  <th scope="row"><%= (i+1) %></th> -->
+    <td><%= data[i].songTitle%></td>
+  </tr>
+  <% }
 
-<button type="submit" class="btn btn-info">Update</button>
-</form>
+   }else{ %>
+       <tr>
+          <td colspan="3">No user</td>
+       </tr>
+    <% } %>
+
+  </tbody>
+  </table>
 </body>
 </html>

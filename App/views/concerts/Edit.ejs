@@ -8,17 +8,23 @@
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 <body>
-<form action="/employees/update/<%= id %>" method="post" name="form1">
+<form action="/concerts/update/<%= concertId %>" method="post" name="form1">
+<div class="form-group">
+  <label for="exampleInputPassword1">ID</label>
+  <input type="number" class="form-control" name="concertId" id="concertId" value="<%= concertId %>" placeholder="concertId">
+</div>
 <div class="form-group">
   <label for="exampleInputPassword1">Name</label>
-  <input type="text" class="form-control" name="name" id="name" value="<%= name %>" placeholder="Name">
+  <input type="text" class="form-control" name="concertName" id="concertName" value="<%= concertName %>" placeholder="Name">
 </div>
 <div class="form-group">
-  <label for="exampleInputEmail1">Email address</label>
-  <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="Enter email" value="<%= email %>">
-
+  <label for="exampleInputPassword1">Location</label>
+  <input type="text" class="form-control" name="concertLocation" id="concertLocation" value="<%= concertLocation %>" placeholder="concertLocation">
 </div>
-
+<div class="form-group">
+  <label for="exampleInputYear1">Year</label>
+  <input type="number" class="form-control" name="concertYear" id="concertYear" placeholder="concertYear" value="<%= concertYear %>">
+</div>
 <button type="submit" class="btn btn-info">Update</button>
 </form>
 </body>

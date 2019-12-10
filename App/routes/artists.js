@@ -6,13 +6,13 @@ var connection  = require('../lib/db');
 /* GET home page. */
 router.get('/', function(req, res, next) {
 
- connection.query('SELECT e.emp_no, e.first_name FROM employees e ORDER BY emp_no desc',function(err,rows)     {
+ connection.query('SELECT artistId, artistName FROM Artist ORDER BY artistId desc',function(err,rows)     {
 
         if(err){
          req.flash('error', err);
-         res.render('employees',{page_title:"Employees - Node.js",data:''});
+         res.render('artists',{page_title:"Artists - Node.js",data:''});
         }else{
-              res.render('employees',{page_title:"Employees - Node.js",data:rows});
+              res.render('artists',{page_title:"Artists - Node.js",data:rows});
         }
 
          });
@@ -23,10 +23,10 @@ router.get('/', function(req, res, next) {
 // SHOW ADD USER FORM
 router.get('/add', function(req, res, next){
     // render to views/user/add.ejs
-    res.render('employees/add', {
-        title: 'Add New Employees',
-        emp_no: '',
-        first_name: ''
+    res.render('artists/add', {
+        title: 'Add New Artist',
+        artistId: '',
+        artistTitle: ''
     })
 })
 
@@ -34,75 +34,72 @@ router.get('/add', function(req, res, next){
 router.post('/add', function (req, res) {
    var params  = req.body;
    console.log(params);
-   connection.query('INSERT INTO employees SET ?', params, function (err, results, fields) {
+   connection.query('INSERT INTO Artist SET ?', params, function (err, results, fields) {
 	  //if (error) throw error;
-    //res.redirect('/employees');
+    //res.redirect('/artists');
 	  //res.end(JSON.stringify(results));
     if (err) {
         req.flash('error', err)
         // redirect to users list page
-        res.redirect('/employees')
+        res.redirect('/artists')
     } else {
-        req.flash('success', 'Employee added successfully! emp_no = ' + req.params.emp_no)
+        req.flash('success', 'Employee added successfully! artistId = ' + req.params.artistId)
         // redirect to users list page
-        res.redirect('/employees')
+        res.redirect('/artists')
     }
 
 	});
 });
 
 // SHOW EDIT USER FORM
-router.get('/edit/(:emp_no)', function(req, res, next){
+router.get('/edit/(:artistId)', function(req, res, next){
 
-connection.query('SELECT * FROM employees WHERE emp_no = ' + req.params.emp_no, function(err, rows, fields) {
-            if(err) throw err
+connection.query('SELECT songTitle FROM Song JOIN SongXArtist ON SongXArtist.songId=Song.songId JOIN Artist On Artist.artistId=SongXArtist.artistId WHERE Artist.artistId = ' + req.params.artistId, function(err, rows, fields) {
+            if(err) throw err;
 
             // if user not found
             if (rows.length <= 0) {
-                req.flash('error', 'Employees not found with emp_no = ' + req.params.emp_no)
-                res.redirect('/employees')
+                req.flash('error', 'Employees not found with artistId = ' + req.params.artistId)
+                res.redirect('/artists')
             }
             else { // if user found
                 // render to views/user/edit.ejs template file
-                res.render('employees/edit', {
-                    title: 'Edit Customer',
-                    //data: rows[0],
-                    id: rows[0].emp_no,
-                    name: rows[0].first_name
-                })
-            }
-        })
-
-})
+                res.render('artists/edit',{data:rows});
+                  //  songTitle: rows[0].songTitle
+                }
+          //  }
+     });
+   });
+//})
 
 // EDIT USER POST ACTION
-router.post('/update/:emp_no', function(req, res, next) {
-    req.assert('emp_no', 'Name is required').notEmpty()           //Validate nam           //Validate age
-    req.assert('first_name', 'A valid email is required').notEmpty()  //Validate email
+router.post('/update/:artistId', function(req, res, next) {
+    req.assert('artistId', 'Name is required').notEmpty()           //Validate nam           //Validate age
+    req.assert('artistName', 'A valid email is required').notEmpty()  //Validate email
 
     var errors = req.validationErrors()
 
     if( !errors ) {
 
         var user = {
-            emp_no: req.sanitize('emp_no').escape().trim(),
-            first_name: req.sanitize('first_name').escape().trim()
+            artistId: req.sanitize('artistId').escape().trim(),
+            first_name: req.sanitize('artistName').escape().trim()
         }
 
-connection.query('UPDATE employees SET ? WHERE emp_no = ' + req.params.emp_no, user, function(err, result) {
+connection.query('UPDATE Artist SET ? WHERE artistId = ' + req.params.artistId, user, function(err, result) {
                 //if(err) throw err
                 if (err) {
                     req.flash('error', err)
 
                     // render to views/user/add.ejs
-                    res.render('employees/edit', {
+                    res.render('artists/edit', {
                         title: 'Edit Customer',
-                        emp_no: req.params.emp_no,
+                        artistId: req.params.artistId,
                         first_name: req.body.first_name,
                     })
                 } else {
                     req.flash('success', 'Data updated successfully!');
-                    res.redirect('/employees');
+                    res.redirect('/artists');
                 }
             })
 
@@ -118,7 +115,7 @@ connection.query('UPDATE employees SET ? WHERE emp_no = ' + req.params.emp_no, u
          * Using req.body.name
          * because req.param('name') is deprecated
          */
-        res.render('employees/edit', {
+        res.render('artists/edit', {
             title: 'Edit Customer',
             id: req.params.id,
             name: req.body.name,
@@ -131,16 +128,16 @@ connection.query('UPDATE employees SET ? WHERE emp_no = ' + req.params.emp_no, u
 router.get('/delete/(:id)', function(req, res, next) {
     var user = { id: req.params.id }
 
-connection.query('DELETE FROM employees WHERE emp_no = ' + req.params.id, user, function(err, result) {
+connection.query('DELETE FROM Artist WHERE artistId = ' + req.params.id, user, function(err, result) {
             //if(err) throw err
             if (err) {
                 req.flash('error', err)
                 // redirect to users list page
-                res.redirect('/employees')
+                res.redirect('/artists')
             } else {
                 req.flash('success', 'Customer deleted successfully! id = ' + req.params.id)
                 // redirect to users list page
-                res.redirect('/employees')
+                res.redirect('/artists')
             }
         })
    })

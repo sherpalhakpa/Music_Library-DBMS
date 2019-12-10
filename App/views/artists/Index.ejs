@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Employees</title>
+  <title>Artists</title>
   <link rel='stylesheet' href='/stylesheets/style.css' />
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
@@ -10,8 +10,8 @@
 <body>
   <div>
     <a href="/" class="btn btn-primary ml-3">Home</a>
-    <a href="/employees/add" class="btn btn-secondary ml-3">New Employee</a>
-    <a href="/employees" class="btn btn-info ml-3">Employee List</a>
+    <a href="/artists/add" class="btn btn-secondary ml-3">New Artists</a>
+    <a href="/artists" class="btn btn-info ml-3">Artists List</a>
 </div>
 <!--   <% if (messages.error) { %>
   <p style="color:red"><%- messages.error %></p>
@@ -25,8 +25,7 @@
 <thead>
   <tr>
     <th scope="col">#</th>
-    <th scope="col">Name</th>
-    <th scope="col">Email</th>
+    <th scope="col">Artist Name</th>
     <th width="200px">Action</th>
 
   </tr>
@@ -36,12 +35,11 @@
 
   for(var i = 0; i< data.length; i++) {%>
   <tr>
-    <th scope="row"><%= (i+1) %></th>
-    <td><%= data[i].emp_no%></td>
-    <td><%= data[i].first_name %></td>
+  <!--  <th scope="row"><%= (i+1) %></th> -->
+    <td><%= data[i].artistId%></td>
+    <td><%= data[i].artistName %></td>
     <td>
-    <a class="btn btn-success edit" href="../employees/edit/<%=data[i].emp_no%>">Edit</a>
-    <a class="btn btn-danger delete" onclick="return alert('Are You sure?')" href="../employees/delete/<%=data[i].emp_no%>">Delete</a>
+    <a class="btn btn-success edit" href="../artists/edit/<%=data[i].artistId%>">Songs</a>
    </td>
   </tr>
   <% }
