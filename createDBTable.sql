@@ -1,5 +1,3 @@
-create schema music_db collate utf8mb4_0900_ai_ci;
-
 create table Artist
 (
 	artistId int auto_increment

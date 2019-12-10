@@ -16,8 +16,32 @@ Instruction
 - Go to your MySql Shell from your choice of command line interface.
 - You can also use IDEs like Mysql WorkBench or DataGrip
 - Go to MySql console and Run the following commands:
+<<<<<<< HEAD
   - mysql> source createDB.sql
   - mysql> source populateDB.sql
+=======
+  - mysql> source createDB.sql 
+  - mysql> source populationDB.sql
+  
+### For using DataGrip to Import SQL Database
+- Go to https://www.jetbrains.com/datagrip/
+- Download the program
+- If you have issues with set up please use this link:
+-https://www.jetbrains.com/help/datagrip/meet-the-product.html
+-Login to Datasource by going to Database menu and clicking '+'
+-Click Data Source then Click MySql
+-Connect to database, make sure to test connection for it to work.
+-Add Schema with respectful name 
+-Then, right click by new Schema and click Import Data From File
+-Find the .sql file that you saved from github (createTable.sql)
+-Double click on file and then wait for contents to load
+-To populate data, open populationDB.schema
+-Copy all contents to clipboard.
+-Right click on your schema that contains the createTable.sql
+-Click New -> Console
+-Paste populationDB.schema contents and press play
+-Data will then be imported into database. 
+>>>>>>> bccc7f37e09a2ee1a26f0a4c9ce6ac8e1f83f05a
 
 ### For CRUD API
 - Go to project folder in your choice of command line interface
