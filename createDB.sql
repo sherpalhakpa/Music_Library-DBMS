@@ -34,7 +34,7 @@ create table ArtistXAlbum
 	constraint ArtistXAlbum_Album_albumId_fk
 		foreign key (albumId) references Album (albumId),
 	constraint ArtistXAlbum_Artist_artistId_fk
-		foreign key (artistId) references Artist (artistId),
+		foreign key (artistId) references Artist (artistId)
 );
 
 create table ArtistXBand
