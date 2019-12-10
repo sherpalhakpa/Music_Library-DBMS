@@ -55,4 +55,9 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+app.listen(3000, () => {
+ console.log('Go to http://localhost:3000 so you can see the data.');
+});
+
 module.exports = app;
