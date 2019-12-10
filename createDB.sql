@@ -65,7 +65,7 @@ create table Label
 (
 	labelId int auto_increment
 		primary key,
-	labelName varchar(50) not null
+	labelName varchar(50) null
 );
 
 create table Playlist
@@ -83,7 +83,7 @@ create table Song
 	songTitle varchar(50) not null,
 	songDuration time not null,
 	songLyrics text null,
-	albumId int null,
+	albumId int not null,
 	artistId int not null,
 	genreId int not null,
 	constraint Song_Album_albumId_fk
